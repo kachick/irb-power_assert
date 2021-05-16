@@ -11,13 +11,13 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     attr_reader :list, :line_no
 
     def initialize(list = [])
-      super("test")
+      super('test')
       @line_no = 0
       @list = list
     end
 
     def gets
-      @list[@line_no]&.tap {@line_no += 1}
+      @list[@line_no]&.tap { @line_no += 1 }
     end
 
     def eof?
@@ -35,6 +35,14 @@ class TestIRBPowerAssert < Test::Unit::TestCase
 
   def test_constants
     assert(IRB::PowerAssert::VERSION.frozen?)
+    assert do
+      Gem::Version.correct?(IRB::PowerAssert::VERSION)
+    end
+
+    am = method(:assert_match)
+    ::PowerAssert.class_exec do
+      am.call(%r{/irb-power_assert/lib\z}, const_get(:INTERNAL_LIB_DIRS)[IRB::PowerAssert])
+    end
   end
 
   def test_mane
@@ -45,10 +53,22 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     workspace = IRB::WorkSpace.new(self)
     irb = IRB::Irb.new(workspace, InputMethod.new([]))
     IRB.conf[:MAIN_CONTEXT] = irb.context
-    expected = "result: false\n\n\"0\".class == \"3\".to_i.times.map {|i| i + 1 }.class\n    |     |      |    |     |                |\n    |     |      |    |     |                Array\n    |     |      |    |     [1, 2, 3]\n    |     |      |    #<Enumerator: ...>\n    |     |      3\n    |     false\n    String\n"
+
+    expected =<<~'EOD'
+    result: false
+
+    "0".class == "3".to_i.times.map {|i| i + 1 }.class
+        |     |      |    |     |                |
+        |     |      |    |     |                Array
+        |     |      |    |     [1, 2, 3]
+        |     |      |    #<Enumerator: ...>
+        |     |      3
+        |     false
+        String
+    EOD
 
     out, err = capture_output do
-      irb.context.main.irb_pa('"0".class == "3".to_i.times.map {|i| i + 1 }.class')
+      irb.context.main.irb_pa(%q{"0".class == "3".to_i.times.map {|i| i + 1 }.class})
     end
     assert_equal('', err)
     assert_match(expected, out)

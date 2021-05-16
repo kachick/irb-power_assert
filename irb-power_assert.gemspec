@@ -8,9 +8,7 @@ repository_url = "https://github.com/kachick/#{lib_name}"
 
 Gem::Specification.new do |gem|
   gem.summary       = %q{power_assert in irb}
-  gem.description   = <<-'EOD'
-    `power_assert` is super helpful in complex test!  This gem provide `pa(power_assert)` command in `irb`.
-  EOD
+  gem.description   = gem.summary
   gem.homepage      = repository_url
   gem.license       = 'MIT'
   gem.name          = lib_name
@@ -27,6 +25,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'test-unit', '>= 3.4.1', '< 4.0'
   gem.add_development_dependency 'warning', '>= 1.2.0', '< 2.0'
   gem.add_development_dependency 'rake', '>= 13.0.3', '< 20.0'
+  gem.add_development_dependency 'rubocop', '>= 1.14.0', '< 1.15.0'
+  gem.add_development_dependency 'rubocop-rake'
+  gem.add_development_dependency 'rubocop-performance'
+  gem.add_development_dependency 'rubocop-rubycw'
 
   gem.required_ruby_version = '>= 2.5.0'
 
