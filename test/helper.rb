@@ -12,6 +12,10 @@ if Warning.respond_to?(:[]=) # @TODO Removable this guard after dropped ruby 2.6
   Warning[:experimental] = true
 end
 
+Gem.path.each do |path|
+  Warning.ignore(//, path)
+end
+
 Warning.process do |_warning|
   :raise
 end
