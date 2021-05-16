@@ -5,11 +5,11 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/1180335/118393194-c3120180-b678-11eb-8c23-1b4854c90840.png)
+![screenshot](https://user-images.githubusercontent.com/1180335/118403880-772c8000-b6ab-11eb-9469-c27aa0b67db8.png)
 
-[ruby/power_assert](https://github.com/ruby/power_assert) is a recent My favorites.
+[ruby/power_assert](https://github.com/ruby/power_assert) is a recent My favorites. (the author is [@k-tsj](https://github.com/k-tsj), thank you!)
 
-It is super helpful in annoy testing.
+It is super helpful in complex testing.
 
 Don't say [ruby/irb](https://github.com/ruby/irb) is old-fashioned.
 
@@ -53,20 +53,22 @@ $ irb
 The you can use `pa` as an IRB command.
 
 ```ruby
-irb(main):001:0> pa '"0".class == "3".to_i.times.map {|i| i + 1 }.class'
+irb(main):001:0> pa %q{ "0".class == "3".to_i.times.map {|i| i + 1 }.class }
 result: false
 
-"0".class == "3".to_i.times.map {|i| i + 1 }.class
-    |     |      |    |     |                |
-    |     |      |    |     |                Array
-    |     |      |    |     [1, 2, 3]
-    |     |      |    #<Enumerator: ...>
-    |     |      3
-    |     false
-    String
+ "0".class == "3".to_i.times.map {|i| i + 1 }.class
+     |     |      |    |     |                |
+     |     |      |    |     |                Array
+     |     |      |    |     [1, 2, 3]
+     |     |      |    #<Enumerator: ...>
+     |     |      3
+     |     false
+     String
 => nil
 ```
 
 ## References
 
+* [power-assert-js/power-assert](https://github.com/power-assert-js/power-assert)
+* [Power Assert in Ruby](https://speakerdeck.com/k_tsj/power-assert-in-ruby)
 * [ja - IRB is new than Pry](https://k0kubun.hatenablog.com/entry/2021/04/02/211455)
