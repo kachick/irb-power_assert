@@ -45,7 +45,7 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     end
   end
 
-  def test_mane
+  def test_typical_example
     IRB.setup(__FILE__, argv: [])
     IRB.conf[:USE_MULTILINE] = true
     IRB.conf[:USE_SINGLELINE] = false
@@ -71,6 +71,6 @@ class TestIRBPowerAssert < Test::Unit::TestCase
       irb.context.main.irb_pa(%q{"0".class == "3".to_i.times.map {|i| i + 1 }.class})
     end
     assert_equal('', err)
-    assert_match(expected, out)
+    assert_equal(expected, out)
   end
 end
