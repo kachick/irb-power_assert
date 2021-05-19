@@ -44,7 +44,7 @@ $ irb
 # Then enabled this gem!
 ```
 
-The you can use `pa` as an IRB command.
+Then you can use `pa` as an IRB command.
 
 ```ruby
 irb(main):001:0> pa %q{ "0".class == "3".to_i.times.map {|i| i + 1 }.class }
