@@ -14,6 +14,10 @@ AllCops:
 Security:
   Enabled: true
 
+Security/Eval:
+  Exclude:
+    - 'examples/**/*'
+
 Style/HashSyntax:
   Enabled: true
 
