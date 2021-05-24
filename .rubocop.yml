@@ -9,6 +9,7 @@ AllCops:
   DisabledByDefault: true
   Exclude:
     - '**/vendor/**/*'
+    - 'pkg/**/*'
   NewCops: enable
 
 Security:
