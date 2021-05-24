@@ -25,10 +25,10 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'test-unit', '>= 3.4.1', '< 4.0'
   gem.add_development_dependency 'warning', '>= 1.2.0', '< 2.0'
   gem.add_development_dependency 'rake', '>= 13.0.3', '< 20.0'
-  gem.add_development_dependency 'rubocop', '>= 1.14.0', '< 1.15.0'
-  gem.add_development_dependency 'rubocop-rake'
-  gem.add_development_dependency 'rubocop-performance'
-  gem.add_development_dependency 'rubocop-rubycw'
+  gem.add_development_dependency 'rubocop', '>= 1.15.0', '< 1.16.0'
+  gem.add_development_dependency 'rubocop-rake', '>= 0.5.1', '< 0.6.0'
+  gem.add_development_dependency 'rubocop-performance', '>= 1.11.3', '< 1.12.0'
+  gem.add_development_dependency 'rubocop-rubycw', '>= 0.1.6', '< 0.2.0'
 
   gem.required_ruby_version = '>= 2.5.0'
 
