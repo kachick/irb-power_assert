@@ -36,11 +36,11 @@ Gem::Specification.new do |gem|
 
   gem.authors       = ['Kenichi Kamiya']
   gem.email         = ['kachick1+ruby@gmail.com']
-  git_ls_filepaths = `git ls-files`.lines.map(&:chomp)
-  minimum_filepaths = git_ls_filepaths.grep(%r!\A(?:lib|sig)/!)
-  raise "obvious mistaken in packaging files: #{minimum_filepaths.inspect}" if minimum_filepaths.size < 2
-  extra_filepaths = %w[README.md LICENSE]
-  raise 'git ignores extra filename' unless (extra_filepaths - git_ls_filepaths).empty?
-  gem.files         = minimum_filepaths | extra_filepaths
+  might_be_parsing_by_tool_as_dependabot = `git ls-files`.lines.empty?
+  files = Dir['README*', '*LICENSE*',  'lib/**/*', 'sig/**/*'].uniq
+  if !might_be_parsing_by_tool_as_dependabot && files.grep(%r!\A(?:lib|sig)/!).size < 4
+    raise "obvious mistaken in packaging files: #{files.inspect}"
+  end
+  gem.files         = files
   gem.require_paths = ['lib']
 end
