@@ -5,7 +5,7 @@
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/1180335/118403880-772c8000-b6ab-11eb-9469-c27aa0b67db8.png)
+![screenshot - expression](https://user-images.githubusercontent.com/1180335/119386011-efc1bb00-bd01-11eb-80c4-1aea86fa3781.png)
 
 [ruby/power_assert](https://github.com/ruby/power_assert) is a recent My favorites. (the author is [@k-tsj](https://github.com/k-tsj), thank you!)
 
@@ -102,10 +102,12 @@ result: false
 => nil
 ```
 
-This repository has the example `.irbrc`, if you don't have the file yet, trying it may be fun.
+This repository has the example [.irbrc](examples/.irbrc), if you don't have the file yet, trying it may be fun.
 
-```console
-$ wget 'https://raw.githubusercontent.com/kachick/irb-power_assert/main/examples/.irbrc' -P "$HOME"
+```shell
+gem install irb-power_assert
+wget 'https://raw.githubusercontent.com/kachick/irb-power_assert/main/examples/.irbrc' -P "$HOME"
+irb
 ```
 
 ## References
