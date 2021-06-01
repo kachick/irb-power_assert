@@ -42,6 +42,19 @@ Style/StringLiteralsInInterpolation:
 Style/TopLevelMethodDefinition:
   Enabled: true
 
+Style/InPatternThen:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/QuotedSymbols:
+  Enabled: true
+  EnforcedStyle: 'single_quotes'
+
+Style/MultilineInPatternThen:
+  Enabled: true
+
 Layout/TrailingEmptyLines:
   Enabled: true
 
@@ -76,6 +89,15 @@ Layout/SpaceInsideStringInterpolation:
   Enabled: true
 
 Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Layout/SpaceAroundKeyword:
+  Enabled: true
+
+Layout/ArgumentAlignment:
+  Enabled: true
+
+Layout/CaseIndentation:
   Enabled: true
 
 Naming/MethodName:
@@ -138,6 +160,9 @@ Lint/RescueException:
   Enabled: false
 
 Lint/DuplicateMethods:
+  Enabled: true
+
+Lint/EmptyInPattern:
   Enabled: true
 
 Rubycw/Rubycw:
