@@ -15,8 +15,9 @@ Gem::Specification.new do |gem|
   gem.version       = IRB::PowerAssert::VERSION
 
   gem.metadata = {
-    'homepage_uri'      => repository_url,
-    'source_code_uri'   => repository_url,
+    'homepage_uri'          => repository_url,
+    'source_code_uri'       => repository_url,
+    'rubygems_mfa_required' => 'true',
   }
 
   gem.add_runtime_dependency 'irb', '>= 1.4.1', '< 2.0'
