@@ -15,8 +15,10 @@ Gem::Specification.new do |gem|
   gem.version       = IRB::PowerAssert::VERSION
 
   gem.metadata = {
+    'documentation_uri'     => 'https://kachick.github.io/irb-power_assert/',
     'homepage_uri'          => repository_url,
     'source_code_uri'       => repository_url,
+    'bug_tracker_uri'       => "#{repository_url}/issues",
     'rubygems_mfa_required' => 'true',
   }
 
