@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'>
+<h1 id="label-irb-power_assert">irb-power_assert</h1>
+
+<p><img src="https://github.com/kachick/irb-power_assert/actions/workflows/test.yml/badge.svg?branch=main"> <a href="http://badge.fury.io/rb/irb-power_assert"><img src="https://badge.fury.io/rb/irb-power_assert.svg"></a></p>
+
+<h2 id="label-Overview">Overview</h2>
+
+<p><img src="https://user-images.githubusercontent.com/1180335/119386011-efc1bb00-bd01-11eb-80c4-1aea86fa3781.png"></p>
+
+<p><a href="https://github.com/ruby/power_assert">ruby/power_assert</a> is a recent My favorites. (the author is <a href="https://github.com/k-tsj">@k-tsj</a>, thank you!)</p>
+
+<p>It is super helpful in complex testing.</p>
+
+<p>Don’t say <a href="https://github.com/ruby/irb">ruby/irb</a> is old-fashioned.</p>
+
+<p>I just would get irb version of <a href="https://github.com/yui-knk/pry-power_assert">yui-knk/pry-power_assert</a></p>
+
+<p>Honor should be bestowed upon them.</p>
+
+<h2 id="label-Usage">Usage</h2>
+
+<p>Require Ruby 2.6 or later</p>
+
+<p>This command will install the latest version into your environment</p>
+
+<pre class="code ruby"><code class="ruby">$ gem install irb-power_assert
+Should be installed!
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">$ irb -r irb-power_assert
+# Then enabled this gem!
+</code></pre>
+
+<p>Or specify in your <code>~/.irbrc</code> as below</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>irb/power_assert</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+
+<pre class="code ruby"><code class="ruby">$ irb
+# Then enabled this gem!
+</code></pre>
+
+<p>Then you can use <code>pa</code> as an IRB command.</p>
+
+<pre class="code ruby"><code class="ruby">irb(main):001:0&gt; pa %q{ &quot;0&quot;.class == &quot;3&quot;.to_i.times.map {|i| i + 1 }.class }
+result: false
+
+ &quot;0&quot;.class == &quot;3&quot;.to_i.times.map {|i| i + 1 }.class
+     |     |      |    |     |                |
+     |     |      |    |     |                Array
+     |     |      |    |     [1, 2, 3]
+     |     |      |    #&lt;Enumerator: ...&gt;
+     |     |      3
+     |     false
+     String
+=&gt; nil
+</code></pre>
+
+<p>So you can see, the <code>pa</code> just takes strings of the code.</p>
+
+<p>If you want to directly pass <code>expression</code>, below is the hack for single line code.</p>
+
+<p>Write below code in your <code>~/.irbrc</code></p>
+
+<pre class="code ruby"><code class="ruby"><span class='comment'># This logic taken from following reference, @k0kubun thank you!
+</span><span class='comment'>#  * https://github.com/k0kubun/dotfiles/blob/8762ee623adae0fba20ed0a5ef7c8ff5825dc20a/config/.irbrc#L241-L262
+</span><span class='comment'>#  * https://k0kubun.hatenablog.com/entry/2021/04/02/211455
+</span><span class='const'><span class='object_link'><a href="IRB.html" title="IRB (module)">IRB</a></span></span><span class='op'>::</span><span class='const'>Context</span><span class='period'>.</span><span class='id identifier rubyid_prepend'>prepend</span><span class='lparen'>(</span><span class='const'>Module</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lbrace'>{</span>
+  <span class='id identifier rubyid_kwargs'>kwargs</span> <span class='op'>=</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='const'>RUBY_VERSION</span><span class='rparen'>)</span> <span class='op'>&gt;=</span> <span class='const'>Gem</span><span class='op'>::</span><span class='const'>Version</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>2.7.0</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>, **</span><span class='tstring_end'>&#39;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_end'>&#39;</span></span>
+  <span class='id identifier rubyid_line'>line</span> <span class='op'>=</span> <span class='kw'>__LINE__</span><span class='semicolon'>;</span> <span class='id identifier rubyid_eval'>eval</span> <span class='tstring'><span class='tstring_beg'>%q{</span><span class='tstring_content'>
+    def evaluate(line, *__ARGS__)
+      case line
+      when /\Apa /
+        line.replace(&quot;pa #{line.sub(/\Apa +/, &#39;&#39;).strip.dump}\n&quot;)
+      end
+      super
+    end
+  </span><span class='tstring_end'>}</span></span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>__ARGS__</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='id identifier rubyid_kwargs'>kwargs</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='kw'>__FILE__</span><span class='comma'>,</span> <span class='id identifier rubyid_line'>line</span>
+<span class='rbrace'>}</span><span class='rparen'>)</span>
+</code></pre>
+
+<p>Then you can use the <code>pa</code> as below…</p>
+
+<pre class="code ruby"><code class="ruby">irb(main):001:0&gt; pa &quot;0&quot;.class == &quot;3&quot;.to_i.times.map {|i| i + 1 }.class
+result: false
+
+&quot;0&quot;.class == &quot;3&quot;.to_i.times.map {|i| i + 1 }.class
+    |     |      |    |     |                |
+    |     |      |    |     |                Array
+    |     |      |    |     [1, 2, 3]
+    |     |      |    #&lt;Enumerator: ...&gt;
+    |     |      3
+    |     false
+    String
+=&gt; nil
+</code></pre>
+
+<p>This repository has the example <a href="examples/.irbrc">.irbrc</a>, if you don’t have the file yet, trying it may be fun.</p>
+
+<pre class="code ruby"><code class="ruby">gem install irb-power_assert
+wget &#39;https://raw.githubusercontent.com/kachick/irb-power_assert/main/examples/.irbrc&#39; -P &quot;$HOME&quot;
+irb
+</code></pre>
+
+<h2 id="label-References">References</h2>
+<ul><li>
+<p><a href="https://github.com/power-assert-js/power-assert">power-assert-js/power-assert</a></p>
+</li><li>
+<p><a href="https://speakerdeck.com/k_tsj/power-assert-in-ruby">Power Assert in Ruby</a></p>
+</li><li>
+<p><a href="https://k0kubun.hatenablog.com/entry/2021/04/02/211455">ja - IRB is new than Pry</a></p>
+</li></ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Thu May 19 19:11:35 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-3.1.2).
+</div>
+
+    </div>
+  </body>
+</html>
