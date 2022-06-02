@@ -10,7 +10,8 @@ on:
       - 'scripts/**'
       - 'sig/**'
       - '**.md'
-      - 'LICENSE'
+      - 'LICENSE.txt'
+      - '.vscode/**'
   pull_request:
     paths-ignore:
       - 'docs/**'
@@ -18,7 +19,8 @@ on:
       - 'scripts/**'
       - 'sig/**'
       - '**.md'
-      - 'LICENSE'
+      - 'LICENSE.txt'
+      - '.vscode/**'
 jobs:
   test:
     strategy:

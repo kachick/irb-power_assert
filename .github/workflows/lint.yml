@@ -6,6 +6,8 @@ on:
       - main
     paths-ignore:
       - 'docs/**'
+      - 'LICENSE.txt'
+      - '.vscode/**'
   pull_request: null # This enables to run on each PRs
 jobs:
   rubocop:

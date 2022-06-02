@@ -7,6 +7,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'debug', '~> 1.5.0', require: false
   gem 'yard', '~> 0.9.28', require: false
   gem 'rubocop', '~> 1.30.0', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
