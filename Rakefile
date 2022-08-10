@@ -34,11 +34,6 @@ namespace :signature do
   end
 end
 
-desc 'Generate YARD docs'
-task :yard do
-  sh 'bundle exec yard --fail-on-warning'
-end
-
 desc 'Prevent miss packaging!'
 task :view_packaging_files do
   sh 'rm -rf ./pkg'
