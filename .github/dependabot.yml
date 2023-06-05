@@ -7,7 +7,7 @@ updates:
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     versioning-strategy: increase
     ignore:
       - dependency-name: 'rubocop'
