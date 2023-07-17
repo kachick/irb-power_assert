@@ -21,9 +21,7 @@ Honor should be bestowed upon them.
 
 ## Usage
 
-Require Ruby 2.7 or later
-
-This command will install the latest version into your environment
+Require Ruby 3.1 or higher # Tested only in ruby-head and the last 2 stable versions
 
 ```console
 $ gem install irb-power_assert
