@@ -17,21 +17,11 @@ task default: [:test_behaviors]
 task test_behaviors: [:test]
 
 desc 'Simulate CI results in local machine as possible'
-multitask simulate_ci: [:test_behaviors, :validate_signatures, :rubocop]
+multitask simulate_ci: [:test_behaviors, :rubocop]
 
 Rake::TestTask.new(:test) do |tt|
   tt.pattern = 'test/**/test_*.rb'
   tt.warning = true
-end
-
-desc 'Signature check, it means `rbs` and `YARD` syntax correctness'
-multitask validate_signatures: [:'signature:validate_yard']
-
-namespace :signature do
-  desc 'Generate YARD docs for the syntax check'
-  task :validate_yard do
-    sh "bundle exec yard --fail-on-warning #{'--no-progress' if ENV['CI']}"
-  end
 end
 
 desc 'Prevent miss packaging!'
