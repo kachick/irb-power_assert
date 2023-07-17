@@ -1,6 +1,6 @@
 # irb-power_assert
 
-![Build Status](https://github.com/kachick/irb-power_assert/actions/workflows/test.yml/badge.svg?branch=main)
+[![Build Status](https://github.com/kachick/irb-power_assert/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/kachick/irb-power_assert/actions/workflows/test.yml?query=branch%3Amain+)
 [![Gem Version](https://badge.fury.io/rb/irb-power_assert.svg)](http://badge.fury.io/rb/irb-power_assert)
 
 ## Overview
