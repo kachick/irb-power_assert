@@ -2,7 +2,6 @@
   "recommendations": [
     "editorconfig.editorconfig",
     "github.vscode-github-actions",
-    "streetsidesoftware.code-spell-checker",
     "rubocop.vscode-rubocop",
     "tekumara.typos-vscode",
     "dprint.dprint"
