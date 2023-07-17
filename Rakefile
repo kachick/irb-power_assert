@@ -48,10 +48,14 @@ end
 desc 'Print dependencies'
 task :deps do
   sh('ruby --version')
+  sh('dprint --version')
   sh('tree --version')
+  sh('typos --version')
 end
 
 desc 'Linters except ruby'
 task :linters do
+  sh('dprint check')
+  sh('typos . .github .vscode')
   sh('nixpkgs-fmt --check ./*.nix')
 end

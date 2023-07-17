@@ -23,6 +23,8 @@
               tree
               nil
               nixpkgs-fmt
+              dprint
+              typos
             ];
           };
       });

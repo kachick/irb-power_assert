@@ -1,13 +1,15 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: 'github-actions'
+    directory: '/'
     schedule:
-      interval: "daily"
-  - package-ecosystem: "bundler"
-    directory: "/"
+      interval: 'daily'
+    ignore:
+      - dependency-name: 'crate-ci/typos'
+  - package-ecosystem: 'bundler'
+    directory: '/'
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     versioning-strategy: increase
     groups:
       rubocop-dependencies:
