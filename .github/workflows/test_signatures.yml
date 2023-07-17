@@ -5,41 +5,25 @@ on:
       - main
     paths:
       - '.github/workflows/test_signatures.yml'
-      - 'lib/**'
-      - 'sig/**'
-      - 'exe/**'
-      - '**.md'
-      - '**.txt'
+      - '**.rb'
       - '**.gemspec'
       - 'Gemfile'
-      - 'Steepfile'
-      - '.yardopts'
       - 'Rakefile'
+      - '.ruby-version'
   pull_request:
     paths:
       - '.github/workflows/test_signatures.yml'
-      - 'lib/**'
-      - 'sig/**'
-      - 'exe/**'
-      - '**.md'
-      - '**.txt'
+      - '**.rb'
       - '**.gemspec'
       - 'Gemfile'
-      - 'Steepfile'
-      - '.yardopts'
       - 'Rakefile'
+      - '.ruby-version'
 jobs:
   validate_signatures:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        ruby: ['3.2']
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby }}
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - run: bundle exec rake validate_signatures >/dev/null
