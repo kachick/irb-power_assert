@@ -44,3 +44,14 @@ task :view_packaging_files do
   end
   sh 'rm -rf ./pkg'
 end
+
+desc 'Print dependencies'
+task :deps do
+  sh('ruby --version')
+  sh('tree --version')
+end
+
+desc 'Linters except ruby'
+task :linters do
+  sh('nixpkgs-fmt --check ./*.nix')
+end
