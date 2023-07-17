@@ -1,9 +1,8 @@
 {
   "recommendations": [
     "editorconfig.editorconfig",
-    "redhat.vscode-yaml",
+    "github.vscode-github-actions",
     "streetsidesoftware.code-spell-checker",
-    "koichisasada.vscode-rdbg",
-    "rebornix.ruby"
+    "rubocop.vscode-rubocop",
   ]
 }
