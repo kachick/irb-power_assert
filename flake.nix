@@ -1,6 +1,11 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/86c33dba3b5fc3e8cd3d02716d9ba048af7ed254";
+    # Candidate channels
+    #   - https://github.com/kachick/anylang-template/issues/17
+    #   - https://discourse.nixos.org/t/differences-between-nix-channels/13998
+    # How to update the revision
+    #   - `nix flake update --commit-lock-file` # https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-flake-update.html
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-ruby.url = "github:bobvanderlinden/nixpkgs-ruby";
     nixpkgs-ruby.inputs.nixpkgs.follows = "nixpkgs";
     flake-utils.url = "github:numtide/flake-utils";
@@ -19,6 +24,10 @@
         devShells.default = with pkgs;
           mkShell {
             buildInputs = [
+              # https://github.com/NixOS/nix/issues/730#issuecomment-162323824
+              # https://github.com/kachick/dotfiles/pull/228
+              bashInteractive
+
               ruby
               tree
               nil
