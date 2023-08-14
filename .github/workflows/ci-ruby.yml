@@ -19,6 +19,12 @@ on:
       - 'Gemfile'
       - 'Rakefile'
       - '**.rb'
+  schedule:
+    # Every 10:42 JST
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '42 1 * * *'
+  workflow_dispatch:
+
 jobs:
   test:
     strategy:
