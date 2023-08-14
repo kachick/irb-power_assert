@@ -51,7 +51,8 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     IRB.conf[:USE_SINGLELINE] = false
     IRB.conf[:VERBOSE] = false
     workspace = IRB::WorkSpace.new(self)
-    irb = IRB::Irb.new(workspace, InputMethod.new([]))
+    # https://github.com/ruby/irb/pull/635#discussion_r1257447968
+    irb = IRB::Irb.new(workspace, IRB::StdioInputMethod.new)
     IRB.conf[:MAIN_CONTEXT] = irb.context
 
     expected =<<~'EOD'
