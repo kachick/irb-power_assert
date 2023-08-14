@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/test.yml'
+      - '.github/workflows/ci-ruby.yml'
       - '.ruby-version'
       - '**.gemspec'
       - 'Gemfile'
@@ -13,12 +13,18 @@ on:
       - '**.rb'
   pull_request:
     paths:
-      - '.github/workflows/test.yml'
+      - '.github/workflows/ci-ruby.yml'
       - '.ruby-version'
       - '**.gemspec'
       - 'Gemfile'
       - 'Rakefile'
       - '**.rb'
+  schedule:
+    # Every 10:42 JST
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '42 1 * * *'
+  workflow_dispatch:
+
 jobs:
   test:
     strategy:
