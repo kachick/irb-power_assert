@@ -29,6 +29,11 @@
               bashInteractive
 
               ruby
+              # Required to build psych via irb dependency
+              # https://github.com/kachick/irb-power_assert/issues/116
+              # https://github.com/ruby/irb/pull/648
+              libyaml
+
               tree
               nil
               nixpkgs-fmt
