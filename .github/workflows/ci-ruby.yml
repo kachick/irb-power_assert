@@ -35,7 +35,7 @@ jobs:
         ruby: ['head', '3.2', '3.1']
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         env:
           # https://github.com/kachick/irb-power_assert/blob/104834846baf5caa1e8536a11c43acdd56fc849c/CONTRIBUTING.md#adding-dependencies-for-this-gem
@@ -50,7 +50,7 @@ jobs:
   rubocop:
     runs-on: 'ubuntu-latest'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
