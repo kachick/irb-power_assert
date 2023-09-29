@@ -16,7 +16,7 @@ jobs:
     with:
       dry-run: ${{ github.event_name == 'pull_request' }}
       optional-run: |
-        ruby -e 'puts RUBY_VERSION' > .ruby-version
+        nix develop --command ruby -e 'puts RUBY_VERSION' > .ruby-version
         git diff-index --quiet HEAD || git commit -m 'Update .ruby-version' .ruby-version
     secrets:
       APP_ID: ${{ secrets.APP_ID }}
