@@ -8,7 +8,7 @@ end
 
 group :development do
   gem 'debug', '~> 1.8.0', require: false
-  gem 'rubocop', '~> 1.58.0', require: false
+  gem 'rubocop', '~> 1.59.0', require: false
   gem 'rubocop-rake', '~> 0.6.0', require: false
 end
 
