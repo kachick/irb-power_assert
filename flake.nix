@@ -22,7 +22,7 @@
               # https://github.com/kachick/dotfiles/pull/228
               bashInteractive
 
-              ruby_3_2
+              ruby_3_3
               # Required to build psych via irb dependency
               # https://github.com/kachick/irb-power_assert/issues/116
               # https://github.com/ruby/irb/pull/648
