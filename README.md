@@ -21,7 +21,7 @@ Honor should be bestowed upon them.
 
 ## Usage
 
-Require Ruby 3.1 or higher # Tested only in ruby-head and the last 2 stable versions
+Require Ruby 3.2 or higher # Tested only in ruby-head and the last 2 stable versions
 
 ```console
 $ gem install irb-power_assert

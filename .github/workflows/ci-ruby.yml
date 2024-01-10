@@ -32,7 +32,7 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
-        ruby: ['head', '3.2', '3.1']
+        ruby: ['head', '3.3', '3.2']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
