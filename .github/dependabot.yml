@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'monthly'
     ignore:
       - dependency-name: 'crate-ci/typos'
     groups:
@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: 'bundler'
     directory: '/'
     schedule:
-      interval: 'weekly'
+      interval: 'monthly'
     versioning-strategy: increase
     groups:
       rubocop-dependencies:
