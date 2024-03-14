@@ -1,5 +1,4 @@
-# https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions
-name: CI - Ruby
+name: 💎
 on:
   push:
     branches:

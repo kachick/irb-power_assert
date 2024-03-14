@@ -1,4 +1,5 @@
-name: CI - Nix
+# https://github.com/NixOS/nixos-artwork/blob/35ebbbf01c3119005ed180726c388a01d4d1100c/logo/README.md#L5
+name: ❄️
 on:
   push:
     branches: [main]
