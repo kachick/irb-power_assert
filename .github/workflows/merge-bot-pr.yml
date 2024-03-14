@@ -16,15 +16,15 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1.6.0
       - name: Wait other jobs
-        if: ${{steps.metadata.outputs.update-type != 'version-update:semver-major'}}
+        if: ${{ steps.metadata.outputs.update-type != 'version-update:semver-major' }}
         uses: kachick/wait-other-jobs@v2
         timeout-minutes: 10
       - name: Approve and merge
-        if: ${{steps.metadata.outputs.update-type != 'version-update:semver-major'}}
+        if: ${{ (steps.metadata.outputs.update-type != 'version-update:semver-major') || contains(steps.metadata.outputs.dependency-names, 'DeterminateSystems') }}
         run: gh pr review --approve "$PR_URL" && gh pr merge --auto --squash "$PR_URL"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # https://github.com/kachick/anylang-template/issues/51
   selfup-runner:
