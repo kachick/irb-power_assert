@@ -11,7 +11,8 @@ Warning[:deprecated] = true
 Warning[:experimental] = true
 
 Gem.path.each do |path|
-  Warning.ignore(//, path)
+  # https://github.com/ruby/ruby/blob/e5b585ba908d371c67d97988795a5e40ec2f9e93/lib/prettyprint.rb#L184
+  Warning.ignore(/literal string will be frozen in the future/, path)
 end
 
 Warning.process do |warning|
@@ -23,7 +24,6 @@ Warning.process do |warning|
 end
 
 require_relative '../lib/irb-power_assert'
-
 
 class Test::Unit::TestCase
   # Taken from https://github.com/ruby/irb/blob/ad08152c43d4309ee4dec3bbaf361ffc338c1f46/test/lib/minitest/unit.rb#L461-L495, thank you!
