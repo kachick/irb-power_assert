@@ -21,7 +21,6 @@ end
 
 require_relative '../lib/irb-power_assert'
 
-
 class Test::Unit::TestCase
   # Taken from https://github.com/ruby/irb/blob/ad08152c43d4309ee4dec3bbaf361ffc338c1f46/test/lib/minitest/unit.rb#L461-L495, thank you!
   def capture_io
