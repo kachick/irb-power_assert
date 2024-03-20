@@ -11,7 +11,11 @@ Warning[:deprecated] = true
 Warning[:experimental] = true
 
 Gem.path.each do |path|
-  Warning.ignore(//, path)
+  # https://bugs.ruby-lang.org/issues/20205
+  # https://github.com/kachick/irb-power_assert/issues/176
+  if RUBY_VERSION >= '3.4'
+    Warning.ignore(/literal string will be frozen in the future/, path)
+  end
 end
 
 Warning.process do |_warning|
