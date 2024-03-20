@@ -17,9 +17,9 @@ end
 Warning.process do |warning|
   # https://bugs.ruby-lang.org/issues/20205
   # https://github.com/kachick/irb-power_assert/issues/176
-  unless RUBY_VERSION >= '3.4' && /literal string will be frozen in the future/.match?(warning)
-    :raise
-  end
+  next :default if RUBY_VERSION >= '3.4' && /literal string will be frozen in the future/.match?(warning)
+
+  :raise
 end
 
 require_relative '../lib/irb-power_assert'
