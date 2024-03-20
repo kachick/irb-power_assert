@@ -3,6 +3,7 @@
 
 require 'stringio'
 require 'warning'
+require 'prettyprint'
 
 # How to use => https://test-unit.github.io/test-unit/en/
 require 'test/unit'
@@ -19,6 +20,7 @@ Warning.process do |_warning|
 end
 
 require_relative '../lib/irb-power_assert'
+
 
 class Test::Unit::TestCase
   # Taken from https://github.com/ruby/irb/blob/ad08152c43d4309ee4dec3bbaf361ffc338c1f46/test/lib/minitest/unit.rb#L461-L495, thank you!
