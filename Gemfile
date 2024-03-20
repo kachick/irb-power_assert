@@ -4,11 +4,6 @@ gemspec
 
 group :development, :test do
   gem 'rake', '~> 13.1.0'
-
-  # Avoid ruby default prettyprint gem even if same version
-  # Keeping in gem path can be easily ignore warnings `literal string will be frozen in the future` in warning gem
-  # https://github.com/ruby/ruby/blob/e5b585ba908d371c67d97988795a5e40ec2f9e93/lib/prettyprint.rb#L184
-  gem 'prettyprint', '~> 0.2.0'
 end
 
 group :development do
