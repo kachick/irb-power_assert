@@ -18,7 +18,7 @@ end
 # https://github.com/ruby/ruby/blob/e5b585ba908d371c67d97988795a5e40ec2f9e93/lib/prettyprint.rb#L184
 Warning.ignore(/literal string will be frozen in the future/, %r!/prettyprint.rb!)
 
-Warning.process do |warning|
+Warning.process do |_warning|
   :raise
 end
 
