@@ -13,7 +13,7 @@ updates:
   - package-ecosystem: 'bundler'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'weekly'
     versioning-strategy: increase
     groups:
       rubocop-dependencies:
