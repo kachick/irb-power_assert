@@ -25,22 +25,46 @@ end
 
 require_relative '../lib/irb-power_assert'
 
-class Test::Unit::TestCase
-  # Taken from https://github.com/ruby/irb/blob/ad08152c43d4309ee4dec3bbaf361ffc338c1f46/test/lib/minitest/unit.rb#L461-L495, thank you!
-  def capture_io
-    captured_stdout, captured_stderr = StringIO.new, StringIO.new
+module TestIRBPowerAssertHelpers
+  class TestInputMethod < ::IRB::InputMethod
+    attr_reader :list, :line_no
 
-    orig_stdout, orig_stderr = $stdout, $stderr
-    $stdout, $stderr         = captured_stdout, captured_stderr
-
-    begin
-      yield
-    ensure
-      $stdout = orig_stdout
-      $stderr = orig_stderr
+    def initialize(list = [])
+      super()
+      @line_no = 0
+      @list = list
     end
 
-    return captured_stdout.string, captured_stderr.string
+    def gets
+      @list[@line_no]&.tap { @line_no += 1 }
+    end
+
+    def eof?
+      @line_no >= @list.size
+    end
+
+    def encoding
+      Encoding.default_external
+    end
+
+    def reset
+      @line_no = 0
+    end
   end
-  alias_method :capture_output, :capture_io
+
+  def execute_lines(*lines, conf: {}, main: self, irb_path: nil)
+    raise unless RUBY_VERSION >= '3.4'
+
+    IRB.init_config(nil)
+    IRB.conf[:VERBOSE] = false
+    IRB.conf[:PROMPT_MODE] = :SIMPLE
+    IRB.conf[:USE_PAGER] = false
+    IRB.conf.merge!(conf)
+    input = TestInputMethod.new(lines)
+    irb = IRB::Irb.new(IRB::WorkSpace.new(main), input)
+    irb.context.return_format = "=> %s\n"
+    irb.context.irb_path = irb_path if irb_path
+    IRB.conf[:MAIN_CONTEXT] = irb.context
+    irb.eval_input
+  end
 end
