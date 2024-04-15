@@ -35,8 +35,7 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     EOD
 
     out, err = capture_output do
-      # We can't handle with the IRB version, because they do not bump version number in development versions.
-      if RUBY_VERSION > '3.4'
+      if IRB::PowerAssert.newer_irb?
         # Since ruby 3.4 (or newer irb gem), no need irbrc hack to realize `pa exp` instead of `pa 'exp'`
         execute_lines(%q{pa "0".class == "3".to_i.times.map {|i| i + 1 }.class})
       else
@@ -53,6 +52,6 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     end
 
     assert_equal('', err)
-    assert_equal((RUBY_VERSION > '3.4' ? expected + "=> nil\n" : expected), out)
+    assert_equal((IRB::PowerAssert.newer_irb? ? expected + "=> nil\n" : expected), out)
   end
 end
