@@ -1,6 +1,8 @@
 name: 💎
 on:
   push:
+    tags:
+      - 'v*.*.*'
     branches:
       - main
     paths:
@@ -55,5 +57,41 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
-          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
       - run: bundle exec rake rubocop
+
+  build_and_release:
+    runs-on: 'ubuntu-latest'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: mkdir -p pkg
+      - run: bundle exec gem build --strict --norc --output=pkg/irb-power_assert.gem irb-power_assert.gemspec
+      - name: Upload artifact
+        uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
+        with:
+          name: '${{ github.sha }}-irb-power_assert.gem'
+          path: pkg/irb-power_assert.gem
+      - uses: kachick/wait-other-jobs@v3
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          skip-list: |
+            [
+              {
+                "workflowFile": "merge-bot-pr.yml"
+              }
+            ]
+      # Only tagged and push to GitHub, you should publish to rubygems.org with OTP
+      - name: Release
+        uses: softprops/action-gh-release@9d7c94cfd0a1f3ed45544c887983e9fa900f0564 # v2.0.4
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: pkg/irb-power_assert.gem
+      - name: Inspect the gem
+        run: |
+          cd pkg
+          sha256sum ./irb-power_assert.gem
+          gem unpack ./irb-power_assert.gem
+          tree -I *.gem

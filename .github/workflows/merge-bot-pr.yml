@@ -20,6 +20,13 @@ jobs:
         uses: kachick/wait-other-jobs@v3
         with:
           skip-same-workflow: 'true'
+          skip-list: |
+            [
+              {
+                "workflowFile": "ci-ruby.yml",
+                "jobName": "build_and_release"
+              }
+            ]
         timeout-minutes: 10
       - name: Approve and merge
         if: ${{ (steps.metadata.outputs.update-type != 'version-update:semver-major') || contains(steps.metadata.outputs.dependency-names, 'DeterminateSystems') }}
