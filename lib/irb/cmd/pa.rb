@@ -19,7 +19,7 @@ module IRB
     end
   end
 
-  if PowerAssert.newer_irb?
+  if ::IRB::Command.respond_to?(:register)
     Command.register(:pa, PaCommand)
   else
     Command::Pa = PaCommand

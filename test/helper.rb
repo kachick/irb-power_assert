@@ -53,8 +53,6 @@ module TestIRBPowerAssertHelpers
   end
 
   def execute_lines(*lines, conf: {}, main: self, irb_path: nil)
-    raise unless RUBY_VERSION >= '3.4'
-
     IRB.init_config(nil)
     IRB.conf[:VERBOSE] = false
     IRB.conf[:PROMPT_MODE] = :SIMPLE
