@@ -17,3 +17,8 @@ If only changing Ruby code, this step is unnecessary
 > dprint --version
 ...
 ```
+
+## How to release
+
+1. Push tags as `v0.4.2`
+2. `curl ... && gem push ...` # `<UPDATE ME>`
