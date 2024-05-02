@@ -19,10 +19,16 @@ updates:
       rubocop-dependencies:
         patterns:
           - '*rubocop*'
+  - package-ecosystem: 'bundler'
+    directory: '/gemfiles/oldest'
+    schedule:
+      interval: 'weekly'
+    versioning-strategy: increase
+    groups:
+      dev-dependencies:
+        patterns:
+          - '*'
+    # Because of this Gemfile purpose is to test oldest dependencies also work
     ignore:
-      - dependency-name: 'rubocop'
-        versions:
-          # https://github.com/rubocop/rubocop/pull/10796
-          - '1.31.2'
-          # https://github.com/rubocop/rubocop/issues/11549
-          - '1.45.0'
+      - dependency-name: 'irb'
+      - dependency-name: 'power_assert'
