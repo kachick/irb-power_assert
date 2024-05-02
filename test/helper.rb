@@ -5,8 +5,12 @@ require 'stringio'
 require 'warning'
 require 'prettyprint'
 
-# How to use => https://test-unit.github.io/test-unit/en/
+# https://test-unit.github.io/test-unit/en/
 require 'test/unit'
+
+# https://github.com/ruby/test-unit-ruby-core
+require 'envutil'
+# Test::Unit::TestCase.include Test::Unit::CoreAssertions
 
 Warning[:deprecated] = true
 Warning[:experimental] = true
@@ -52,17 +56,17 @@ module TestIRBPowerAssertHelpers
     end
   end
 
-  def execute_lines(*lines, conf: {}, main: self, irb_path: nil)
-    IRB.init_config(nil)
-    IRB.conf[:VERBOSE] = false
-    IRB.conf[:PROMPT_MODE] = :SIMPLE
-    IRB.conf[:USE_PAGER] = false
-    IRB.conf.merge!(conf)
-    input = TestInputMethod.new(lines)
-    irb = IRB::Irb.new(IRB::WorkSpace.new(main), input)
-    irb.context.return_format = "=> %s\n"
-    irb.context.irb_path = irb_path if irb_path
-    IRB.conf[:MAIN_CONTEXT] = irb.context
-    irb.eval_input
+  def save_encodings
+    @default_encoding = [Encoding.default_external, Encoding.default_internal]
+    @stdio_encodings = [STDIN, STDOUT, STDERR].map { |io| [io.external_encoding, io.internal_encoding] }
+  end
+
+  def restore_encodings
+    EnvUtil.suppress_warning do
+      Encoding.default_external, Encoding.default_internal = *@default_encoding
+      [STDIN, STDOUT, STDERR].zip(@stdio_encodings) do |io, encs|
+        io.set_encoding(*encs)
+      end
+    end
   end
 end
