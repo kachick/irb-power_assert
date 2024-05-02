@@ -35,23 +35,10 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     EOD
 
     out, err = capture_output do
-      if ::IRB::Command.respond_to?(:register)
-        # Since ruby 3.4 (or newer irb gem), no need irbrc hack to realize `pa exp` instead of `pa 'exp'`
-        execute_lines(%q{pa "0".class == "3".to_i.times.map {|i| i + 1 }.class})
-      else
-        IRB.setup(__FILE__, argv: [])
-        IRB.conf[:USE_MULTILINE] = true
-        IRB.conf[:USE_SINGLELINE] = false
-        IRB.conf[:VERBOSE] = false
-        workspace = IRB::WorkSpace.new(self)
-        irb = IRB::Irb.new(workspace)
-        IRB.conf[:MAIN_CONTEXT] = irb.context
-
-        irb.context.main.irb_pa(%q{"0".class == "3".to_i.times.map {|i| i + 1 }.class})
-      end
+      execute_lines(%q{pa "0".class == "3".to_i.times.map {|i| i + 1 }.class})
     end
 
     assert_equal('', err)
-    assert_equal((::IRB::Command.respond_to?(:register) ? expected + "=> nil\n" : expected), out)
+    assert_equal(expected + "=> nil\n", out)
   end
 end

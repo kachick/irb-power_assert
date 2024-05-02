@@ -47,28 +47,6 @@ $ irb
 Then you can use `pa` as an IRB command.
 
 ```ruby
-irb(main):001:0> pa %q{ "0".class == "3".to_i.times.map {|i| i + 1 }.class }
-result: false
-
- "0".class == "3".to_i.times.map {|i| i + 1 }.class
-     |     |      |    |     |                |
-     |     |      |    |     |                Array
-     |     |      |    |     [1, 2, 3]
-     |     |      |    #<Enumerator: ...>
-     |     |      3
-     |     false
-     String
-=> nil
-```
-
-The `pa` just takes strings of the code.
-
-If you want to directly pass `expression`, [.irbrc](examples/.irbrc) is the hack for single line code.\
-if you don't have the file yet, putting the file as one of your `$IRBRC`, `$XDG_CONFIG_HOME/irb/irbrc` or `$HOME/.irbrc`
-
-Then you can use the `pa` as below...
-
-```ruby
 irb(main):001:0> pa "0".class == "3".to_i.times.map {|i| i + 1 }.class
 result: false
 
@@ -83,8 +61,11 @@ result: false
 => nil
 ```
 
+No hack is needed in your irbrc, thank you irb developers!
+
 ## References
 
 - [power-assert-js/power-assert](https://github.com/power-assert-js/power-assert)
 - [Power Assert in Ruby](https://speakerdeck.com/k_tsj/power-assert-in-ruby)
 - [ja - IRB is new than Pry](https://k0kubun.hatenablog.com/entry/2021/04/02/211455)
+- [Support command registration](https://github.com/ruby/irb/pull/886)

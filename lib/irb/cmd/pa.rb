@@ -19,13 +19,5 @@ module IRB
     end
   end
 
-  if ::IRB::Command.respond_to?(:register)
-    Command.register(:pa, PaCommand)
-  else
-    Command::Pa = PaCommand
-
-    module ExtendCommandBundle
-      def_extend_command(:irb_pa, :Pa, __FILE__, [:pa, NO_OVERRIDE])
-    end
-  end
+  Command.register(:pa, PaCommand)
 end
