@@ -69,6 +69,10 @@ jobs:
           bundler-cache: true
       - run: mkdir -p pkg
       - run: bundle exec gem build --strict --norc --output=pkg/irb-power_assert.gem irb-power_assert.gemspec
+      - name: Make sure we can use the gem
+        run: |
+          gem install pkg/irb-power_assert.gem
+          echo 'pa (2 * 3 * 7).abs == 1010102.to_s.to_i(2)' | irb -r irb-power_assert --script -
       - name: Upload artifact
         uses: actions/upload-artifact@65462800fd760344b1a7b4382951275a0abb4808 # v4.3.3
         with:
