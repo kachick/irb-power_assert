@@ -11,6 +11,7 @@ updates:
         patterns:
           - 'DeterminateSystems*'
   - package-ecosystem: 'bundler'
+    # Do not includes '/gemfiles' or exclude irb and power_assert to test oldest dependencies also work
     directory: '/'
     schedule:
       interval: 'weekly'
