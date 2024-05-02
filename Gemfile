@@ -13,6 +13,7 @@ end
 
 group :test do
   gem 'test-unit', '~> 3.6.2'
+  gem 'test-unit-ruby-core', '~> 1.0'
   gem 'warning', '~> 1.3.0'
 
   gem 'irb', '1.13.0'

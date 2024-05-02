@@ -20,6 +20,8 @@ updates:
         patterns:
           - '*rubocop*'
   - package-ecosystem: 'bundler'
+    # For feature dependedncy updates,
+    # Keep this definition even if the /gemfiles/oldest/Gemfile is completely same as /Gemfile
     directory: '/gemfiles/oldest'
     schedule:
       interval: 'weekly'

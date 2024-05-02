@@ -6,26 +6,40 @@ require 'power_assert/colorize'
 
 module IRB
   class PaCommand < IRB::Command::Base
-    def execute(expression)
-      # The implementation basically taken from https://github.com/yui-knk/pry-power_assert/blob/2d10ee3df8efaf9c448f31d51bff8033a1792739/lib/pry-power_assert.rb#L26-L35, thank you!
-      result = +'result: '
+    description 'Show inspections for each result.'
+    category 'Misc'
+    help_message 'Print PowerAssert inspection for the given expression.'
 
-      ::PowerAssert.start(expression, source_binding: irb_context.workspace.binding) do |pa|
-        result << pa.yield.inspect << "\n\n"
-        result << pa.message_proc.call
+    def usage
+      <<~'EOD'
+        `pa` command will work for expressions that includes method calling.
+        e.g. `pa (2 * 3 * 7).abs == 1010102.to_s.to_i(2)`
+      EOD
+    end
+
+    def execute(expression)
+      if expression == ''
+        # Avoid warn and raise here, warn does not appear in irb and exception sounds like a IRB bug
+        puts usage
+        return
       end
 
-      puts result
+      result = nil
+      inspection = nil
+      ::PowerAssert.start(expression, source_binding: irb_context.workspace.binding) do |pa|
+        result = pa.yield
+        inspection = pa.message_proc.call
+      end
+
+      if inspection == ''
+        puts usage
+      else
+        puts inspection, "\n"
+      end
+
+      puts "=> #{result.inspect}"
     end
   end
 
-  if ::IRB::Command.respond_to?(:register)
-    Command.register(:pa, PaCommand)
-  else
-    Command::Pa = PaCommand
-
-    module ExtendCommandBundle
-      def_extend_command(:irb_pa, :Pa, __FILE__, [:pa, NO_OVERRIDE])
-    end
-  end
+  Command.register(:pa, PaCommand)
 end
