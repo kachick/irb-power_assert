@@ -41,11 +41,13 @@ task :deps do
   sh('dprint --version')
   sh('tree --version')
   sh('typos --version')
+  sh('nix --version')
+  sh('nixfmt --version')
 end
 
 desc 'Linters except ruby'
 task :linters do
   sh('dprint check')
   sh('typos . .github .vscode')
-  sh('nixpkgs-fmt --check ./*.nix')
+  sh(%q!git ls-files '*.nix' | xargs nixfmt --check!)
 end
