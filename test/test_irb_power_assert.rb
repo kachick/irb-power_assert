@@ -42,6 +42,23 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     assert_equal(expected + "=> nil\n", out)
   end
 
+  def test_no_expression
+    out, err = capture_output do
+      execute_lines(%q{pa})
+    end
+
+    assert_equal('', err)
+    assert_match(/should be called with expression/, out)
+
+    out, err = capture_output do
+      # With whitespace
+      execute_lines(%q{pa    })
+    end
+
+    assert_equal('', err)
+    assert_match(/should be called with expression/, out)
+  end
+
   def test_help
     out, err = capture_output do
       execute_lines(%q{help pa})
