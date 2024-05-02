@@ -41,4 +41,13 @@ class TestIRBPowerAssert < Test::Unit::TestCase
     assert_equal('', err)
     assert_equal(expected + "=> nil\n", out)
   end
+
+  def test_help
+    out, err = capture_output do
+      execute_lines(%q{help pa})
+    end
+
+    assert_equal('', err)
+    assert_match(/Print.+PowerAssert.+inspection/i, out)
+  end
 end
