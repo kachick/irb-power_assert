@@ -21,4 +21,13 @@ If only changing Ruby code, this step is unnecessary
 ## How to release
 
 1. Push tags as `v0.4.2`
-2. `curl ... && gem push ...` # `<UPDATE ME>`
+2. Wait for complete the GitHub Actions
+3. Run following commands
+   ```bash
+   cd "$(mktemp --directory)"
+   curl -L https://github.com/kachick/irb-power_assert/releases/latest/download/irb-power_assert.gem > irb-power_assert.gem
+   sha256sum irb-power_assert.gem # Make sure it has same hash as GitHub Action printed
+
+   gem push irb-power_assert.gem --otp [CHECK_MFTA_TOOL]
+   ```
+4. Check https://rubygems.org/gems/irb-power_assert
