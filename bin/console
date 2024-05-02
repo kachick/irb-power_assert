@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'bundler/setup'
-
 require_relative '../lib/irb/power_assert'
 
 IRB.start
