@@ -4,6 +4,7 @@
     "github.vscode-github-actions",
     "rubocop.vscode-rubocop",
     "tekumara.typos-vscode",
-    "dprint.dprint"
+    "dprint.dprint",
+    "kachick.vscode-yamlfmt"
   ]
 }
