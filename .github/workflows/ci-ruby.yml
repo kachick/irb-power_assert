@@ -68,6 +68,8 @@ jobs:
   build_and_release:
     runs-on: 'ubuntu-24.04'
     steps:
+      - name: Install tree
+        run: sudo apt-get install --no-install-recommends --assume-yes tree
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
