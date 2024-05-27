@@ -31,7 +31,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        os: [ubuntu-24.04]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
         ruby: ['head', '3.3', '3.2']
         gemfile: ['Gemfile', 'gemfiles/oldest/Gemfile']
@@ -39,6 +39,11 @@ jobs:
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
       BUNDLE_GEMFILE: '${{ github.workspace }}/${{ matrix.gemfile }}'
     steps:
+      # libyaml is needed for psych, see https://github.com/actions/runner-images/issues/9895
+      # GitHub installs libyaml-dev in latest runners, but often dropped in new runners.
+      - name: Install libyaml
+        if: startsWith(matrix.os, 'ubuntu-') && matrix.ruby == '3.2'
+        run: sudo apt-get install --no-install-recommends --assume-yes libyaml-dev
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         env:
@@ -52,7 +57,7 @@ jobs:
           BUNDLE_WITHOUT: development
 
   rubocop:
-    runs-on: 'ubuntu-latest'
+    runs-on: 'ubuntu-24.04'
     steps:
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
@@ -61,8 +66,10 @@ jobs:
       - run: bundle exec rake rubocop
 
   build_and_release:
-    runs-on: 'ubuntu-latest'
+    runs-on: 'ubuntu-24.04'
     steps:
+      - name: Install tree
+        run: sudo apt-get install --no-install-recommends --assume-yes tree
       - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
