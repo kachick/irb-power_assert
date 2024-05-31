@@ -51,6 +51,8 @@ jobs:
           BUNDLE_WITHOUT: development
         with:
           ruby-version: ${{ matrix.ruby }}
+          # Enabling is the recommended way, but it cannot detect runner changes in early stage.
+          # So disable it is better for test job, do not mind in other jobs
           bundler-cache: false # runs 'bundle install' and caches installed gems automatically
       - run: bundle install
       - run: bundle exec rake test
