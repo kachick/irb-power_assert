@@ -11,8 +11,9 @@ on:
 
 jobs:
   update-nixpkgs:
-    uses: kachick/selfup/.github/workflows/reusable-bump-flake-lock-and-selfup.yml@v1.1.2
+    uses: kachick/selfup/.github/workflows/reusable-bump-flake-lock-and-selfup.yml@v1.1.3
     with:
+      app_id: ${{ vars.APP_ID }}
       dry-run: ${{ github.event_name == 'pull_request' }}
       pr-title: 'Bump flake.lock and related dependencies'
       optional-run: |
@@ -21,5 +22,4 @@ jobs:
         git update-index -q --really-refresh
         git diff-index --quiet HEAD || git commit -m 'Update .ruby-version' .ruby-version
     secrets:
-      APP_ID: ${{ secrets.APP_ID }}
       APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
