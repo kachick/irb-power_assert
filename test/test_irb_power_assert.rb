@@ -82,7 +82,13 @@ class TestIRBPowerAssertWithEnv < Test::Unit::TestCase
     out, err = execute_lines(%q{pa "0".class == "3".to_i.times.map {|i| i + 1 }.class})
 
     assert_equal('', err)
-    assert_equal(expected + "=> nil\n", out)
+    # TODO: Remove this version guard after dropping to support irb 1.13.x
+    # https://github.com/ruby/irb/pull/972
+    if Gem::Version.new(IRB::VERSION) >= '1.14'
+      assert_equal(expected, out)
+    else
+      assert_equal(expected + "=> nil\n", out)
+    end
   end
 
   def test_usage
@@ -115,7 +121,13 @@ class TestIRBPowerAssertWithEnv < Test::Unit::TestCase
     out, err = execute_lines(%q{pa 42.abs})
 
     assert_equal('', err)
-    assert_equal(expected + "=> nil\n", out)
+    # TODO: Remove this version guard after dropping to support irb 1.13.x
+    # https://github.com/ruby/irb/pull/972
+    if Gem::Version.new(IRB::VERSION) >= '1.14'
+      assert_equal(expected, out)
+    else
+      assert_equal(expected + "=> nil\n", out)
+    end
   end
 
   def test_help
