@@ -40,7 +40,6 @@
               nil
               nixfmt-rfc-style
               dprint
-              yamlfmt
               typos
             ];
           };
