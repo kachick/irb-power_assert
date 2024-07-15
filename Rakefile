@@ -39,7 +39,6 @@ desc 'Print dependencies'
 task :deps do
   sh('ruby --version')
   sh('dprint --version')
-  sh('yamlfmt -version')
   sh('tree --version')
   sh('typos --version')
   sh('nix --version')
@@ -49,7 +48,6 @@ end
 desc 'Linters except ruby'
 task :linters do
   sh('dprint check')
-  sh('yamlfmt -lint .')
   sh('typos . .github .vscode')
   sh(%q!git ls-files '*.nix' | xargs nixfmt --check!)
 end
