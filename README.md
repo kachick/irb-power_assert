@@ -57,8 +57,6 @@ No hack is needed in your irbrc
 
 It is super helpful in complex testing.
 
-Don't say [ruby/irb](https://github.com/ruby/irb) is old-fashioned.
-
 I just would get irb version of
 [yui-knk/pry-power_assert](https://github.com/yui-knk/pry-power_assert).
 
@@ -70,5 +68,4 @@ Honor should be bestowed upon them.
 
 - [power-assert-js/power-assert](https://github.com/power-assert-js/power-assert)
 - [Power Assert in Ruby](https://speakerdeck.com/k_tsj/power-assert-in-ruby)
-- [ja - IRB is new than Pry](https://k0kubun.hatenablog.com/entry/2021/04/02/211455)
 - [pry-power_assert implementation](https://github.com/yui-knk/pry-power_assert/blob/2d10ee3df8efaf9c448f31d51bff8033a1792739/lib/pry-power_assert.rb#L26-L35)
