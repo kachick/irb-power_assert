@@ -1,0 +1,85 @@
+name: 🚀
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: 'ubuntu-24.04'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: mkdir -p pkg
+      - run: bundle exec gem build --strict --norc --output=pkg/irb-power_assert.gem irb-power_assert.gemspec
+      - name: Make sure we can use the gem
+        run: |
+          gem install pkg/irb-power_assert.gem
+          echo 'pa (2 * 3 * 7).abs == 1010102.to_s.to_i(2)' | irb -r irb-power_assert --script -
+      - name: Upload artifact
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
+        with:
+          name: '${{ github.sha }}-irb-power_assert.gem'
+          path: pkg/irb-power_assert.gem
+
+  github:
+    runs-on: 'ubuntu-24.04'
+    timeout-minutes: 15
+    needs:
+      - build
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      # Required to checkout for gh command
+      - uses: actions/checkout@v4
+      - name: Dowbload prebuild assets
+        run: |
+          gh run download
+          tree
+      - name: Release
+        run: |
+          gh release create --verify-tag "$GITHUB_REF_NAME" --title "$GITHUB_REF_NAME" pkg/irb-power_assert.gem
+
+  rubygems:
+    name: Push gem to RubyGems.org
+    runs-on: 'ubuntu-24.04'
+    needs:
+      - build
+      - github # With the implementation, parallel is okay, however wait for it regarding rollback difficulty
+
+    permissions:
+      id-token: write # IMPORTANT: this permission is mandatory for trusted publishing
+      contents: write # IMPORTANT: this permission is required for `rake release` to push the release tag
+
+    # https://github.com/kachick/irb-power_assert/deployments/release
+    # https://github.com/kachick/irb-power_assert/settings/environments
+    environment: release
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: false # Don't enable while using .bundle/config. See https://github.com/kachick/rspec-matchers-power_assert_matchers/issues/223#issuecomment-2562853948
+      - name: Dowbload prebuild assets
+        run: |
+          gh run download
+          tree
+      - name: Inspect the gem
+        run: |
+          cd pkg
+          sha256sum ./irb-power_assert.gem
+          gem unpack ./irb-power_assert.gem
+          tree -I *.gem
+      - uses: kachick/wait-other-jobs@v3
+        with:
+          skip-list: |
+            [
+              {
+                "workflowFile": "merge-bot-pr.yml"
+              }
+            ]
+      - uses: rubygems/release-gem@v1
