@@ -74,7 +74,7 @@ jobs:
           gem install pkg/irb-power_assert.gem
           echo 'pa (2 * 3 * 7).abs == 1010102.to_s.to_i(2)' | irb -r irb-power_assert --script -
       - name: Upload artifact
-        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+        uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4.5.0
         with:
           name: '${{ github.sha }}-irb-power_assert.gem'
           path: pkg/irb-power_assert.gem
