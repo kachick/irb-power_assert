@@ -87,6 +87,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: false # Don't enable while using .bundle/config. See https://github.com/kachick/rspec-matchers-power_assert_matchers/issues/223#issuecomment-2562853948
+      - run: bundle install
       - name: Dowbload prebuild assets
         run: |
           gh run download '${{ github.run_id }}'
