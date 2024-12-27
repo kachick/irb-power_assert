@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
 
-# Don't use `gemspec(path: Pathname(__dir__).parent.parent)` to avoid dependabot error
-# `Dependabot only supports uninterpolated string arguments to gemspec. Got `Pathname(__dir__).parent.parent`
-gemspec
+gemspec(path: Pathname(__dir__).parent.parent)
 
 group :development, :test do
   gem 'rake', '~> 13.2.1'
