@@ -11,6 +11,7 @@ updates:
         patterns:
           - 'DeterminateSystems*'
   - package-ecosystem: 'bundler'
+    # Don't icnlude '/gemfiles/oldest', the gemspec is not parsible by dependabot and using hardlink will broken the require_relative in gemspec
     directory: '/'
     schedule:
       interval: 'weekly'
@@ -19,18 +20,3 @@ updates:
       rubocop-dependencies:
         patterns:
           - '*rubocop*'
-  - package-ecosystem: 'bundler'
-    # For feature dependedncy updates,
-    # Keep this definition even if the /gemfiles/oldest/Gemfile is completely same as /Gemfile
-    directory: '/gemfiles/oldest'
-    schedule:
-      interval: 'weekly'
-    versioning-strategy: increase
-    groups:
-      dev-dependencies:
-        patterns:
-          - '*'
-    # Because of this Gemfile purpose is to test oldest dependencies also work
-    ignore:
-      - dependency-name: 'irb'
-      - dependency-name: 'power_assert'
