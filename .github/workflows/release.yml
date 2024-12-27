@@ -99,6 +99,7 @@ jobs:
           tree -I *.gem
       - uses: kachick/wait-other-jobs@v3
         with:
+          skip-same-workflow: true
           skip-list: |
             [
               {
