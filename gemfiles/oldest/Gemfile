@@ -2,20 +2,11 @@ source 'https://rubygems.org'
 
 gemspec(path: Pathname(__dir__).parent.parent)
 
-group :development, :test do
-  gem 'rake', '~> 13.2.1'
-end
-
-group :development do
-  # Don't relax rubocop family versions with `~> the_version`, rubocop often introduce breaking changes in patch versions. See ruby-ulid#722
-  gem 'rubocop', '1.69.2', require: false
-  gem 'rubocop-rake', '0.6.0', require: false
-end
-
 group :test do
-  gem 'test-unit', '~> 3.6.7'
-  gem 'test-unit-ruby-core', '~> 1.0'
-  gem 'warning', '~> 1.5.0'
+  gem 'rake', '13.2.1'
+  gem 'test-unit', '3.6.7'
+  gem 'test-unit-ruby-core', '1.0'
+  gem 'warning', '1.5.0'
 
   gem 'irb', '1.14.0'
   gem 'power_assert', '2.0.3'
