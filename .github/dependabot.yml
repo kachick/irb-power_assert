@@ -20,3 +20,8 @@ updates:
       rubocop-dependencies:
         patterns:
           - '*rubocop*'
+    ignore:
+      - dependency-name: 'rubocop'
+        versions:
+          # https://github.com/rubocop/rubocop/pull/14067#issuecomment-2820741234
+          - '1.75.3'
