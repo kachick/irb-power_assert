@@ -8,7 +8,7 @@ end
 
 group :development do
   # Don't relax rubocop family versions with `~> the_version`, rubocop often introduce breaking changes in patch versions. See ruby-ulid#722
-  gem 'rubocop', '1.75.2', require: false
+  gem 'rubocop', '1.75.5', require: false
   gem 'rubocop-rake', '0.7.1', require: false
 end
 
