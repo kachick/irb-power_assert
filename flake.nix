@@ -1,17 +1,12 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    selfup = {
-      url = "github:kachick/selfup/v1.1.8";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
     {
       self,
       nixpkgs,
-      selfup,
     }:
     let
       inherit (nixpkgs) lib;
@@ -27,25 +22,23 @@
         {
           # Require CC to build io-console
           default = pkgs.mkShell {
-            buildInputs =
-              (with pkgs; [
-                bashInteractive
-                findutils # xargs
-                nixfmt-rfc-style
-                nil
+            buildInputs = with pkgs; [
+              bashInteractive
+              findutils # xargs
+              nixfmt-rfc-style
+              nil
 
-                ruby_3_4
-                # Required to build psych via irb dependency
-                # https://github.com/kachick/irb-power_assert/issues/116
-                # https://github.com/ruby/irb/pull/648
-                libyaml
+              ruby_3_4
+              # Required to build psych via irb dependency
+              # https://github.com/kachick/irb-power_assert/issues/116
+              # https://github.com/ruby/irb/pull/648
+              libyaml
 
-                tree
+              tree
 
-                dprint
-                typos
-              ])
-              ++ [ selfup.packages.${system}.default ];
+              dprint
+              typos
+            ];
           };
         }
       );

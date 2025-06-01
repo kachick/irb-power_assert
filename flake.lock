@@ -18,29 +18,7 @@
     },
     "root": {
       "inputs": {
-        "nixpkgs": "nixpkgs",
-        "selfup": "selfup"
-      }
-    },
-    "selfup": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1733754336,
-        "narHash": "sha256-Sy4LfPXqa2CKnySCFTLMwU5mSKxKOdeC52Yjoomcbvs=",
-        "owner": "kachick",
-        "repo": "selfup",
-        "rev": "ecb158813e7ade0a2e9b88b186460d052a906f20",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kachick",
-        "ref": "v1.1.8",
-        "repo": "selfup",
-        "type": "github"
+        "nixpkgs": "nixpkgs"
       }
     }
   },
