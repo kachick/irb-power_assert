@@ -13,7 +13,7 @@ group :development do
 end
 
 group :test do
-  gem 'test-unit', '~> 3.6.9'
+  gem 'test-unit', '~> 3.7.0'
   gem 'test-unit-ruby-core', '~> 1.0'
   gem 'warning', '~> 1.5.0'
 
