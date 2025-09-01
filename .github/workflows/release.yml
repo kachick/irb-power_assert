@@ -26,7 +26,7 @@ jobs:
   build:
     runs-on: 'ubuntu-24.04'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
@@ -52,7 +52,7 @@ jobs:
     if: startsWith(github.ref, 'refs/tags/')
     steps:
       # Required to checkout for gh command
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Dowbload prebuild assets
         run: |
           gh run download '${{ github.run_id }}'
@@ -82,7 +82,7 @@ jobs:
       GH_TOKEN: ${{ github.token }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
