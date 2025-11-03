@@ -18,5 +18,5 @@ group :test do
   gem 'warning', '~> 1.5.0'
 
   gem 'irb', '1.15.3'
-  gem 'power_assert', '2.0.5'
+  gem 'power_assert', '3.0.0'
 end
