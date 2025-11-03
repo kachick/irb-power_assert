@@ -17,6 +17,6 @@ group :test do
   gem 'test-unit-ruby-core', '~> 1.0'
   gem 'warning', '~> 1.5.0'
 
-  gem 'irb', '1.15.2'
+  gem 'irb', '1.15.3'
   gem 'power_assert', '2.0.5'
 end
