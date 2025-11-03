@@ -21,7 +21,7 @@ Gem::Specification.new do |gem|
   }
 
   gem.add_dependency 'irb', '>= 1.14.0', '< 2.0'
-  gem.add_dependency 'power_assert', '>= 2.0.3', '< 3.0'
+  gem.add_dependency 'power_assert', '>= 2.0.3', '< 4.0'
 
   gem.required_ruby_version = '>= 3.3'
 
