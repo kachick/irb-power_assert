@@ -6,10 +6,6 @@ updates:
       interval: 'monthly'
     ignore:
       - dependency-name: 'crate-ci/typos'
-    groups:
-      nix-actions:
-        patterns:
-          - 'DeterminateSystems*'
   - package-ecosystem: 'bundler'
     # Don't icnlude '/gemfiles/oldest', the gemspec is not parsible by dependabot and using hardlink will broken the require_relative in gemspec
     directory: '/'
