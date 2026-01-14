@@ -28,7 +28,7 @@
               nixfmt-rfc-style
               nixd
 
-              ruby_3_4
+              ruby_4_0
               # Required to build psych via irb dependency
               # https://github.com/kachick/irb-power_assert/issues/116
               # https://github.com/ruby/irb/pull/648
