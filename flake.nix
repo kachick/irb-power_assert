@@ -25,7 +25,8 @@
             buildInputs = with pkgs; [
               bashInteractive
               findutils # xargs
-              nixfmt-rfc-style
+              nixfmt
+              nixfmt-tree
               nixd
 
               ruby_4_0
