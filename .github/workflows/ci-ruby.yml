@@ -33,7 +33,7 @@ jobs:
       matrix:
         os: [ubuntu-24.04]
         # Due to https://github.com/actions/runner/issues/849, we have to use quotes for '3.0'
-        ruby: ['head', '3.4', '3.3']
+        ruby: ['head', '4.0', '3.4']
         gemfile: ['Gemfile', 'gemfiles/oldest/Gemfile']
     runs-on: ${{ matrix.os }}
     env: # $BUNDLE_GEMFILE must be set at the job level, so it is set for all steps
