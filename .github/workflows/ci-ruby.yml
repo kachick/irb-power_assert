@@ -41,9 +41,6 @@ jobs:
       # https://github.com/kachick/irb-power_assert/blob/104834846baf5caa1e8536a11c43acdd56fc849c/CONTRIBUTING.md#adding-dependencies-for-this-gem
       BUNDLE_WITHOUT: development
     steps:
-      - name: Ensure clearing GitHub provided tool cache. See GH-425 for detail
-        run: |
-          rm -rf "$RUNNER_TOOL_CACHE"
       - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
         with:
