@@ -42,7 +42,7 @@ jobs:
       BUNDLE_WITHOUT: development
     steps:
       - uses: actions/checkout@v6
-      - uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
+      - uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 # v1.299.0
         with:
           ruby-version: ${{ matrix.ruby }}
           # Enabling is the recommended way, but it cannot detect runner changes in early stage.
@@ -55,7 +55,7 @@ jobs:
     runs-on: 'ubuntu-24.04'
     steps:
       - uses: actions/checkout@v6
-      - uses: ruby/setup-ruby@09a7688d3b55cf0e976497ff046b70949eeaccfd # v1.288.0
+      - uses: ruby/setup-ruby@3ff19f5e2baf30647122352b96108b1fbe250c64 # v1.299.0
         with:
           bundler-cache: true
       - run: bundle exec rake rubocop
