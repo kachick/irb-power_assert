@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'monthly'
+      interval: 'daily' # Keep setup-ruby latest as possible to enable latest ruby version
     ignore:
       - dependency-name: 'crate-ci/typos'
   - package-ecosystem: 'bundler'
