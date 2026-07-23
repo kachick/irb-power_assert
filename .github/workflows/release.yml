@@ -27,7 +27,7 @@ jobs:
     runs-on: 'ubuntu-26.04'
     steps:
       - uses: actions/checkout@v7
-      - uses: ruby/setup-ruby@a30dfa457ad68707b8b910ac3a244714b61c0626 # v1.320.0
+      - uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
         with:
           bundler-cache: true
       - run: mkdir -p pkg
@@ -84,7 +84,7 @@ jobs:
     steps:
       - uses: actions/checkout@v7
       - name: Set up Ruby
-        uses: ruby/setup-ruby@a30dfa457ad68707b8b910ac3a244714b61c0626 # v1.320.0
+        uses: ruby/setup-ruby@95ef2b042f9d7a56d8268cba8559e2842e2ad01b # v1.321.0
         with:
           bundler-cache: false # Don't enable while using .bundle/config. See https://github.com/kachick/rspec-matchers-power_assert_matchers/issues/223#issuecomment-2562853948
       - run: bundle install
