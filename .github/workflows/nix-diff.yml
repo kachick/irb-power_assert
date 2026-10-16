@@ -1,0 +1,17 @@
+name: ❄️ Diff
+on:
+  pull_request:
+    paths:
+      - 'flake.lock'
+      - '.github/workflows/nix-diff.yml'
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  diff:
+    uses: kachick/workflows/.github/workflows/reusable-nix-diff-closures.yml@main
+    with:
+      runs-on: ubuntu-26.04
+      targets: devShells.x86_64-linux.default
