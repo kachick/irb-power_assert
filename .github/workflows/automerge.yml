@@ -1,0 +1,23 @@
+name: 🤖👌🤖
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/automerge.yml'
+  schedule:
+    # 12 is not strict; it comes from: `gh api repos/:owner/:repo --jq '.id % 60'`
+    - cron: '12 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  automerge:
+    uses: kachick/workflows/.github/workflows/reusable-automerge.yml@main
+    with:
+      app-id: ${{ vars.SAMU_APP_ID }}
+      llm-veto: true
+    secrets:
+      APP_PRIVATE_KEY: ${{ secrets.SAMU_APP_PRIVATE_KEY }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
