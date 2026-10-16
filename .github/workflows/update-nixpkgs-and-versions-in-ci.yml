@@ -9,17 +9,15 @@ on:
     - cron: '17 1 * * 1'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
-  update-nixpkgs:
-    uses: kachick/selfup/.github/workflows/reusable-bump-flake-lock-and-selfup.yml@v1.3.1
+  bump:
+    uses: kachick/workflows/.github/workflows/reusable-bump-flake-lock.yml@main
     with:
-      app_id: ${{ vars.APP_ID }}
-      dry-run: ${{ github.event_name == 'pull_request' }}
-      pr-title: 'Bump flake.lock and related dependencies'
-      optional-run: |
-        nix develop --command ruby -e 'puts RUBY_VERSION' > .ruby-version
-        # https://stackoverflow.com/q/34807971
-        git update-index -q --really-refresh
-        git diff-index --quiet HEAD || git commit -m 'Update .ruby-version' .ruby-version
+      app-id: ${{ vars.SAMU_APP_ID }}
+      post-commit-lock-file: nix develop --command bash -c "ruby -e 'puts RUBY_VERSION' > .ruby-version"
+      post-commit-lock-file-title: 'Update .ruby-version'
     secrets:
-      APP_PRIVATE_KEY: ${{ secrets.APP_PRIVATE_KEY }}
+      APP_PRIVATE_KEY: ${{ secrets.SAMU_APP_PRIVATE_KEY }}
