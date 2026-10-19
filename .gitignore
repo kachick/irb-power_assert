@@ -57,6 +57,7 @@ build-iPhoneSimulator/
 
 *.lock
 !flake.lock
+!/Gemfile.lock
 .direnv/
 
 .DS_Store
