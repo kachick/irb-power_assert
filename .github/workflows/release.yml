@@ -9,7 +9,7 @@ on:
       - '.github/workflows/release.yml'
       - '.ruby-version'
       - '**.gemspec'
-      - '**Gemfile'
+      - '**Gemfile*'
       - 'Rakefile'
       - '**.rb'
   pull_request:
@@ -17,7 +17,7 @@ on:
       - '.github/workflows/release.yml'
       - '.ruby-version'
       - '**.gemspec'
-      - '**Gemfile'
+      - '**Gemfile*'
       - 'Rakefile'
       - '**.rb'
   workflow_dispatch:

@@ -3,7 +3,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/dependency-review.yml'
-      - 'Gemfile'
+      - '**Gemfile*'
 
 permissions:
   contents: read
