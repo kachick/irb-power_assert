@@ -40,16 +40,17 @@ jobs:
       BUNDLE_GEMFILE: '${{ github.workspace }}/${{ matrix.gemfile }}'
       # https://github.com/kachick/irb-power_assert/blob/104834846baf5caa1e8536a11c43acdd56fc849c/CONTRIBUTING.md#adding-dependencies-for-this-gem
       BUNDLE_WITHOUT: development
+      # Why not use lockfile Bundler for all rubies:
+      # Pinned Bundler in Gemfile.lock reproduces local setups on stable Rubies,
+      # but breaks on ruby-head due to internal changes in Pathname.
+      # Only ruby-head uses the system Bundler to stop autoswitch crashes.
+      BUNDLE_VERSION: ${{ matrix.ruby == 'head' && 'system' || 'lockfile' }}
     steps:
       - uses: actions/checkout@v7
       - uses: ruby/setup-ruby@651ff0d62c5c79bed6d53ec518387aae20e72c1a # v1.329.0
         with:
           ruby-version: ${{ matrix.ruby }}
-          # Why not 'Gemfile.lock':
-          # Matching the lockfile version is ideal, but older Bundler pinned in Gemfile.lock
-          # breaks on ruby-head due to internal Ruby changes. Use the default Bundler shipped
-          # with each Ruby version to avoid toolchain failures.
-          bundler: default
+          bundler: ${{ matrix.ruby == 'head' && 'default' || 'Gemfile.lock' }}
           # Enabling is the recommended way, but it cannot detect runner changes in early stage.
           # So disable it is better for test job, do not mind in other jobs
           bundler-cache: false # runs 'bundle install' and caches installed gems automatically
