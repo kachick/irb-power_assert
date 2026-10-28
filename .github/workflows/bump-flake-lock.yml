@@ -1,0 +1,20 @@
+name: 🤖🆙❄️
+
+permissions:
+  contents: read
+
+on:
+  schedule:
+    # 1st of every month at 01:17 UTC (10:17 JST)
+    - cron: '17 1 1 * *'
+  workflow_dispatch:
+
+jobs:
+  bump:
+    uses: kachick/workflows/.github/workflows/reusable-bump-flake-lock.yml@main # zizmor: ignore[unpinned-uses]
+    with:
+      app-id: ${{ vars.SAMU_APP_ID }}
+      post-commit-lock-file: nix develop --command bash -c "ruby -e 'puts RUBY_VERSION' > .ruby-version"
+      post-commit-lock-file-title: 'Update .ruby-version'
+    secrets:
+      APP_PRIVATE_KEY: ${{ secrets.SAMU_APP_PRIVATE_KEY }}

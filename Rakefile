@@ -48,6 +48,6 @@ end
 desc 'Linters except ruby'
 task :linters do
   sh('dprint check')
-  sh('typos . .github .vscode')
+  sh('typos . .github')
   sh(%q!git ls-files '*.nix' | xargs nixfmt --check!)
 end

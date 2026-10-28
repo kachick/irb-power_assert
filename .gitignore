@@ -63,3 +63,4 @@ build-iPhoneSimulator/
 .DS_Store
 
 .irb_history
+.vscode/

@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   diff:
-    uses: kachick/workflows/.github/workflows/reusable-nix-diff-closures.yml@main
+    uses: kachick/workflows/.github/workflows/reusable-nix-diff-closures.yml@main # zizmor: ignore[unpinned-uses]
     with:
       runs-on: ubuntu-26.04
       targets: devShells.x86_64-linux.default

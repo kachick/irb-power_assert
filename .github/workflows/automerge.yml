@@ -4,9 +4,6 @@ permissions:
   contents: read
 
 on:
-  pull_request:
-    paths:
-      - '.github/workflows/automerge.yml'
   schedule:
     # 12 is not strict; it comes from: `gh api repos/:owner/:repo --jq '.id % 60'`
     - cron: '12 */6 * * *'
@@ -14,7 +11,7 @@ on:
 
 jobs:
   automerge:
-    uses: kachick/workflows/.github/workflows/reusable-automerge.yml@main
+    uses: kachick/workflows/.github/workflows/reusable-automerge.yml@main # zizmor: ignore[unpinned-uses]
     with:
       app-id: ${{ vars.SAMU_APP_ID }}
       llm-veto: true
