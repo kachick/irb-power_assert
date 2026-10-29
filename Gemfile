@@ -14,7 +14,7 @@ end
 
 group :test do
   gem 'test-unit', '~> 3.7.8'
-  gem 'test-unit-ruby-core', '~> 1.0'
+  gem 'test-unit-ruby-core', '~> 1.0', '>= 1.0.16'
   gem 'warning', '~> 1.6.0'
 
   gem 'irb', '1.18.0'

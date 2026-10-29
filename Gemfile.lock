@@ -84,7 +84,7 @@ DEPENDENCIES
   rubocop (= 1.92.1)
   rubocop-rake (= 0.7.1)
   test-unit (~> 3.7.8)
-  test-unit-ruby-core (~> 1.0)
+  test-unit-ruby-core (~> 1.0, >= 1.0.16)
   warning (~> 1.6.0)
 
 BUNDLED WITH
