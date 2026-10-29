@@ -1,0 +1,18 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>kachick/renovate-config//presets/default.jsonc",
+    "github>kachick/renovate-config//presets/bundler.jsonc"
+  ],
+  "packageRules": [
+    // Do not let Renovate update dependencies in gemfiles/oldest because it pins
+    // minimum supported versions for CI compatibility tests
+    {
+      "description": "Disable updates in gemfiles/oldest used for minimum version testing",
+      "matchFileNames": [
+        "gemfiles/oldest/**"
+      ],
+      "enabled": false
+    }
+  ]
+}
