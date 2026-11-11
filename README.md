@@ -7,7 +7,7 @@ Use power_assert inspection in irb
 
 ## Usage
 
-Requires Ruby 4.0, 3.4, or newer.
+Requires Ruby 4.0 or newer.
 
 ```console
 $ gem install irb-power_assert
