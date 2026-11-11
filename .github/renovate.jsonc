@@ -13,6 +13,23 @@
         "gemfiles/oldest/**"
       ],
       "enabled": false
+    },
+    // Do not casually bump runtime dependencies in gemspec to preserve minimum supported versions
+    {
+      "description": "Disable casual updates in gemspec to preserve minimum supported versions",
+      "matchFileNames": [
+        "**/*.gemspec"
+      ],
+      "enabled": false
+    },
+    // Allow Renovate to raise PRs for gemspec if a security vulnerability is reported
+    {
+      "description": "Allow security vulnerability fixes in gemspec",
+      "matchFileNames": [
+        "**/*.gemspec"
+      ],
+      "isVulnerabilityAlert": true,
+      "enabled": true
     }
   ]
 }
