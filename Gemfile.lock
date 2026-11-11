@@ -3,7 +3,7 @@ PATH
   specs:
     irb-power_assert (0.5.0)
       irb (>= 1.14.0, < 2.0)
-      power_assert (>= 2.0.3, < 4.0)
+      power_assert (>= 2.0.4, < 4.0)
 
 GEM
   remote: https://rubygems.org/
