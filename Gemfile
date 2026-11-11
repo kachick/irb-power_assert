@@ -8,7 +8,7 @@ end
 
 group :development do
   # Don't relax rubocop family versions with `~> the_version`, rubocop often introduce breaking changes in patch versions. See ruby-ulid#722
-  gem 'rubocop', '1.92.1', require: false
+  gem 'rubocop', '1.92.2', require: false
   gem 'rubocop-rake', '0.7.1', require: false
 end
 
@@ -17,6 +17,6 @@ group :test do
   gem 'test-unit-ruby-core', '~> 1.0', '>= 1.0.16'
   gem 'warning', '~> 1.6.0'
 
-  gem 'irb', '1.18.0'
+  gem 'irb', '1.19.0'
   gem 'power_assert', '3.1.0'
 end
