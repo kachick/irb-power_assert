@@ -21,15 +21,6 @@
         "**/*.gemspec"
       ],
       "enabled": false
-    },
-    // Allow Renovate to raise PRs for gemspec if a security vulnerability is reported
-    {
-      "description": "Allow security vulnerability fixes in gemspec",
-      "matchFileNames": [
-        "**/*.gemspec"
-      ],
-      "isVulnerabilityAlert": true,
-      "enabled": true
     }
   ]
 }
